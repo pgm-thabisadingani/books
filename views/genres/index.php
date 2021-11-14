@@ -1,32 +1,57 @@
 <?php 
 $title = 'Genres page'; 
 
+$search_str = $_GET['search_term'] ?? '';
+$genres = searchGenresByTitle($search_str); //
+?>
+
+
 ?>
 <?php include_once BASE_DIR . '/views/_templates/_partials/header.php'; ?>
 
-<h1>Index page of the Genres</h1>
-
-<form action="" method="post" name="add_genre">
-        Add Genre: <input type="text" name="title" placeholder="Add Genre" required="required"/>
-        <input type="submit"  value="Add Genre" name="add_genre" />
-</form>
-    
-<?php
-
-foreach ($genres as $genre) {
-?>
-    <div class="book">
-        
-    </div>
-
-        <div id="bookTitle">
-            <b><?= $genre['name']?></b> 
+<main>
+    <article>
+        <div class="widthControl" >
+            <div class="searchbox">
+                <div class="searchbox__Add">
+                    <a href="/genres/create">Add Genre</a>
+                </div>    
+                <form method="GET" action="/genres/index">
+                    <div class="search">
+                        <input type="text" class="book_search" name="search_term" placeholder="Genre title"/>
+                        <input type="submit" class="deleteBtn submitBtn" value="Search"/>
+                    </div>
+                </form>
+            </div>
         </div>
+    </article>
+  
 
-        <?php
-
-    }
-
-    ?>
+    <section>
+            <div class="widthControl" >
+                <div class="genrePage">
+                    <div class=" genrePageTitle ">
+                        <h2>Featured genres</h2>
+                    </div>
+                    <div class="genresTypes">
+                        <?php foreach ($genres as $genre) { ?>
+                            <div class="genreName">
+                            <p><b><?= $genre['name'] ?></b> </p>
+                                <article  class="deleteEdit authorDelete authorGenre">
+                                    <form method="post" >
+                                        <input type="text" class="author_hidden" name="genre_id" value=<?=$genre['id']?>/>
+                                        <input type="submit" class="smallBtn deleteBtn" value="🗑️" name="delete_genre" />
+                                    </form>
+                                    <div>
+                                        <a class="smallBtn editBtn" href="/genres/update/<?= $genre['id'] ?>" >🖊️</a>
+                                    </div>
+                                </article>
+                            </div>
+                        <?php } ?>
+                    </div>    
+                </div>
+            </div>
+        </section>
+    </main>
     <?php include_once BASE_DIR . '/views/_templates/_partials/footer.php'; ?>
 

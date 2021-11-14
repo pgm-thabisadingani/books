@@ -1,21 +1,60 @@
-<?php $title = 'Authors'?>
+<?php $title = 'Authors';
+
+$search_str = $_GET['search_term'] ?? '';
+$authors = searchAuthorsByTitle($search_str); //
+
+?>
 <?php include_once BASE_DIR . '/views/_templates/_partials/header.php'; ?>
 
-<h1>Index page of the Authors</h1>
-    
+<main>
 
-<form action="" method="post" name="add_author">
-        First Name: <input type="text" name="first_name" placeholder="First name" required="required"/>
-        Middle Name: <input type="text" name="middle_name" placeholder="Middle name"/>
-        Last Name: <input type="text" name="last_name" placeholder="First name" required="required"/>
-        <input type="submit"  value="Add Author" name="add_author" />
-</form>
+<article>
+    <div class="widthControl" >
+        <div class="searchbox">
+            <div class="searchbox__Add">
+                <a href="/authors/create">Add Author</a>
+            </div>    
+            <form method="GET" action="/authors/index">
+                <div class="search">
+                    <input type="text" class="book_search" name="search_term" placeholder="Author title"/>
+                    <input type="submit" class="deleteBtn submitBtn" value="Search" />
+                </div>
+            </form>
+        </div>
+    </div>
+</article>
 
-<?php foreach ($authors as $author){?>
+<section>
+        <div class="widthControl" >
+            <div class="authorOverview">
+                <div class="authorTitle">
+                    <h2>Authors Collection</h2>
+                </div>
+                <div class="authorTypes">
+                    <?php foreach ($authors as $author) { ?>
+                        <div class="authorName authorPage">
+                            <div class="authorSpan"></div>
+                            <p class="authorNameSpan"><b><?= $author['first_name']?> <?= $author['middle_name']?> <?= $author['last_name']?></b></p>
+                                <article  class="deleteEdit authorDelete">
+                                <form method="post" >
+                                    <input type="text" class="author_hidden" name="author_id" value=<?=$author['id']?>/>
+                                    <input type="submit" class="smallBtn deleteBtn" value="🗑️" name="delete_author" />
+                                </form>
+                                <div>
+                                    <a class="smallBtn editBtn" href="/authors/update/<?= $author['id'] ?>" >🖊️</a> 
+                                </div>
+                             </article>
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <p><?= $author['first_name']?> <?= $author['middle_name']?> <?= $author['last_name']?></p>
-
-<?php } ?>
+</main>
 
 <?php include_once BASE_DIR . '/views/_templates/_partials/footer.php'; ?>
+
+
+
 

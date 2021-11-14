@@ -9,20 +9,20 @@
 </head>
 <body>
 
-<nav>
-    <div class='top_bar clearfix'>
-        <div class='image clearfix'>
-            <!-- <a href='index.php'><img src='imgs/mainicon.png' width='113.333px' height='137px'></a> -->
-        </div>
-        <div class='header'>
-            <br><h1>IMDBOOKS</h1>
-            <p>Your book preview site</p>
+
+<nav >
+    <div class="widthControl">
+        <div class="nav">
+            <div class='logo'>
+            <a href="/../"><h2>Imd🕮</h2></a>
+                <!-- <a href='index.php'><img src='imgs/mainicon.png' width='113.333px' height='137px'></a> -->
+            </div>
+            <ul class="navbar-nav">
+                <li><a href="/../">Home</a></li>
+                <li><a href="/../books">Books</a></li>
+                <li><a href="/../authors">Authors</a></li>
+                <li><a href="/../genres">Genres</a></li>
+            </ul>
         </div>
     </div>
-    <ul class="nav navbar-nav">
-        <li><a href="/../">Home</a></li>
-        <li><a href="/../books">Books</a></li>
-        <li><a href="/../authors">Authors</a></li>
-        <li><a href="/../genres">Genres</a></li>
-    </ul>
 </nav>
